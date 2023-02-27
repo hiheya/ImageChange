@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String EXTRA_MESSAGE = "work.icu007.imagechange.extra.MESSAGE";
+    private String mOrderMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
      * E-mail: rookie_l@icu007.work
      **/
     public void showDonutOrder(View view){
-        displayToast(getString(R.string.donut_order_message));
+        mOrderMessage = getString(R.string.donut_order_message);
+        displayToast(mOrderMessage);
     }
 
 
@@ -48,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
      * E-mail: rookie_l@icu007.work
      **/
     public void showIceCreamOrder(View view){
-        displayToast(getString(R.string.ice_cream_order_message));
+        mOrderMessage = getString(R.string.ice_cream_order_message);
+        displayToast(mOrderMessage);
     }
 
 
@@ -60,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
      * E-mail: rookie_l@icu007.work
      **/
     public void showFroyoOrder(View view){
-        displayToast(getString(R.string.froyo_order_message));
+        mOrderMessage = getString(R.string.froyo_order_message);
+        displayToast(mOrderMessage);
     }
 
 
@@ -73,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
      **/
     public void startOrderActivity(View view) {
         Intent intent = new Intent(MainActivity.this,OrderActivity.class);
+        intent.putExtra(EXTRA_MESSAGE,mOrderMessage);
         startActivity(intent);
     }
 }
