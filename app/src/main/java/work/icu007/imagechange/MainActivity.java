@@ -2,15 +2,57 @@ package work.icu007.imagechange;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "work.icu007.imagechange.extra.MESSAGE";
     private String mOrderMessage;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_order:
+                Intent intent = new Intent(getApplicationContext(),OrderActivity.class);
+                intent.putExtra(EXTRA_MESSAGE,mOrderMessage);
+                startActivity(intent);
+                return true;
+            case R.id.action_status:
+                displayToast(getString(R.string.action_status_message));
+                return true;
+            case R.id.action_favorites:
+                displayToast(getString(R.string.action_favorites_message));
+                return true;
+            case R.id.action_contact:
+                displayToast(getString(R.string.action_contact_message));
+                return true;
+            case R.id.action_start_article:
+                Intent intent1 = new Intent(getApplicationContext(),ArticleActivity.class);
+                startActivity(intent1);
+                return true;
+            case R.id.action_start_dialog:
+                Intent intent2 = new Intent(getApplicationContext(),DialogForAlert.class);
+                startActivity(intent2);
+                return true;
+            default:
+                // do nothing
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
